@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Note {
+  // Maps the name "_id" to "id", so we don't keep using it. Mongo uses "_id" for some reason
+  // @id makes Mongo know that this is the id value
+  // @default auto() makes this the primary key, auto makes it automatically generated.
+  // ObjectId tells mongodb this is not a normal string but a mongodb ID
+
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   String?
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // It is convention for mongodb to have the collection name in small letters. So we use @@map to map the whole model to the new name. The model will be called "notes", but the model we work with will be called "Note". Neat!
+
+  @@map("notes")
+}
