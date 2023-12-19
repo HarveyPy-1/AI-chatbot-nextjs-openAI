@@ -2,7 +2,7 @@ import { SignUp } from "@clerk/nextjs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AI Note | Sign Up",
+  title: "AI Notes | Sign Up",
 };
 
 const SignUpPage = () => {
