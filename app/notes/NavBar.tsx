@@ -11,6 +11,7 @@ import ModifyNoteDialog from "@/components/ui/modifyNoteDialog";
 import ThemeToggle from "@/components/ui/themeToggle";
 import {dark} from "@clerk/themes"
 import { useTheme } from "next-themes";
+import AIChatButton from "@/components/ui/aiChatButton";
 
 
 
@@ -40,6 +41,7 @@ const NavBar = () => {
             <Button onClick={() => setShowModifyNoteDialog(true)}>
               <Plus size={20} className="mr-2" /> Add Note
             </Button>
+            <AIChatButton />
           </div>
         </div>
       </div>
