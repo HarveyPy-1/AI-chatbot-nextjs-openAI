@@ -36,7 +36,7 @@ const Note = ({ note }: NoteProps) => {
           <CardTitle>{note.title}</CardTitle>
           <CardDescription>
             {createdUpdatedAtTimestamp}
-            {wasUpdated && "updated"}
+            {wasUpdated && " · updated"}
           </CardDescription>
         </CardHeader>
         <Separator className="mb-2" />

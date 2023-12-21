@@ -8,9 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import ModifyNoteDialog from "@/components/ui/modifyNoteDialog";
+import ThemeToggle from "@/components/ui/themeToggle";
+
+
 
 const NavBar = () => {
+  // toggle dialog open or closed
   const [showModifyNoteDialog, setShowModifyNoteDialog] = useState(false);
+
   return (
     <>
       <div className="p-2 shadow">
@@ -20,6 +25,7 @@ const NavBar = () => {
             <span className="font-bold">AI Notes</span>
           </Link>
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <UserButton
               afterSignOutUrl="/"
               appearance={{

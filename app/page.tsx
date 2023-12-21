@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import ThemeToggle from "@/components/ui/themeToggle";
 
 export default function Home() {
   // Check if userId exists
@@ -29,6 +30,7 @@ export default function Home() {
       <Button size="lg" asChild>
         <Link href="/notes">Open</Link>
       </Button>
+      <ThemeToggle />
     </main>
   );
 }
