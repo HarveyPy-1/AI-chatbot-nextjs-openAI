@@ -19,6 +19,8 @@ import {
 import { Input } from "./input";
 import { Textarea } from "./textarea";
 import SubmitButton from "./submitButton";
+import { useToast } from "./use-toast";
+import { useRouter } from "next/navigation";
 
 interface AddNoteDialogProps {
   open: boolean;
@@ -29,11 +31,44 @@ const AddNoteDialog = ({ open, setOpen }: AddNoteDialogProps) => {
   // From shadcn. It uses react-hook-form under the hood
   const form = useForm<CreateNoteSchema>({
     resolver: zodResolver(createNoteSchema),
+    defaultValues: {
+      title: "",
+      content: "",
+      //Without this, the default value is 'null', and our error message doesn't display
+    },
   });
 
-  // Handle form submission
+  // add router to refresh the page after form submission or form error
+  const router = useRouter();
+
+  // create Toast notification
+  const { toast } = useToast();
+
+  // Handle form submission and add to db
   async function onSubmit(input: CreateNoteSchema) {
-    alert(input);
+    try {
+      // we don't need to add the full api route in nextJS
+      const response = await fetch("/api/notes", {
+        method: "POST",
+        body: JSON.stringify(input),
+      });
+
+      if (!response.ok) throw Error("Status code: " + response.status);
+      form.reset();
+
+      // refresh page
+      router.refresh();
+
+      // dialog closed by default
+      setOpen(false);
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        variant: "destructive"
+      });
+    }
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>

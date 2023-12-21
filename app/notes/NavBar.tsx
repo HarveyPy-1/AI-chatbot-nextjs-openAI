@@ -16,7 +16,7 @@ const NavBar = () => {
       <div className="p-2 shadow">
         <div className="m-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
           <Link href={"/notes"} className="flex items-center gap-3">
-            <Image src={logo} alt="logo" width={50} height={40} />
+            <Image src={logo} alt="logo" width={50} height={40} priority />
             <span className="font-bold">AI Notes</span>
           </Link>
           <div className="flex items-center gap-2">
