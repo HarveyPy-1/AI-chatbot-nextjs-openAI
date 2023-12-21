@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     // make request to pinecone to get notes with embeddings close to our chat history (meaning that the meaning is similar)
     const vectorQueryResponse = await notesIndex.query({
       vector: embedding,
-      topK: 4,
+      topK: 4, // It'll find only four notes (vector) that rhymes with our request. This is ok for a small project and to save tokens
       filter: { userId },
     });
 
