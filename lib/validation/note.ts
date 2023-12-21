@@ -10,3 +10,14 @@ export const createNoteSchema = z.object({
 // Creating a typescript type from this schema to get autocomplete
 
 export type CreateNoteSchema = z.infer<typeof createNoteSchema>;
+
+// schema validation for updating notes. Same with above but with an id
+export const updateNoteSchema = createNoteSchema.extend({
+  // we can also validate to make sure it's a type of mongodb Id if we want
+  id: z.string().min(1),
+});
+
+// schema for deleting notees
+export const deleteNoteSchema = z.object({
+  id: z.string().min(1),
+});

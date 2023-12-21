@@ -7,10 +7,10 @@ import { UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import AddNoteDialog from "@/components/ui/addNoteDialog";
+import ModifyNoteDialog from "@/components/ui/modifyNoteDialog";
 
 const NavBar = () => {
-  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+  const [showModifyNoteDialog, setShowModifyNoteDialog] = useState(false);
   return (
     <>
       <div className="p-2 shadow">
@@ -26,14 +26,17 @@ const NavBar = () => {
                 elements: { avatarBox: { width: "2.5rem", height: "2.5rem" } },
               }}
             />
-            <Button onClick={() => setShowAddNoteDialog(true)}>
+            <Button onClick={() => setShowModifyNoteDialog(true)}>
               <Plus size={20} className="mr-2" /> Add Note
             </Button>
           </div>
         </div>
       </div>
-      {/* Note that you can use the conventional "showAddNoteDialog && <AddNoteDialog />" however, this method completely unmounts the component and any inputted data is lost. The way it's done below just opens and closes the dialog and input is kept so you can continue to write even after you close the dialog */}
-      <AddNoteDialog open={showAddNoteDialog} setOpen={setShowAddNoteDialog} />
+      {/* Note that you can use the conventional "showModifyNoteDialog && <AddNoteDialog />" however, this method completely unmounts the component and any inputted data is lost. The way it's done below just opens and closes the dialog and input is kept so you can continue to write even after you close the dialog */}
+      <ModifyNoteDialog
+        open={showModifyNoteDialog}
+        setOpen={setShowModifyNoteDialog}
+      />
     </>
   );
 };
