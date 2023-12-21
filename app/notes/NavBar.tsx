@@ -9,12 +9,16 @@ import { Plus } from "lucide-react";
 import { useState } from "react";
 import ModifyNoteDialog from "@/components/ui/modifyNoteDialog";
 import ThemeToggle from "@/components/ui/themeToggle";
+import {dark} from "@clerk/themes"
+import { useTheme } from "next-themes";
 
 
 
 const NavBar = () => {
   // toggle dialog open or closed
   const [showModifyNoteDialog, setShowModifyNoteDialog] = useState(false);
+
+  const {theme} = useTheme()
 
   return (
     <>
@@ -29,6 +33,7 @@ const NavBar = () => {
             <UserButton
               afterSignOutUrl="/"
               appearance={{
+                baseTheme: theme === "dark" ? dark : undefined,
                 elements: { avatarBox: { width: "2.5rem", height: "2.5rem" } },
               }}
             />
