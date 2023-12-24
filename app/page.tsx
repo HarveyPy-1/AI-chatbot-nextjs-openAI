@@ -22,13 +22,11 @@ export default function Home() {
         </span>
       </div>
       <p className="max-w-prose text-center">
-        A sophisticated note-taking application seamlessly incorporating AI,
-        developed using OpenAI, Pinecone, NextJS, Shadcn UI, Clerk, and other
-        cutting-edge technologies.
+        Create notes like you always do. Interact with it using AI.
       </p>
       {/* Instead of wrapping this button with a Link tag, use the asChild prop to tell it to render as a Link tag */}
       <Button size="lg" asChild>
-        <Link href="/notes">Open</Link>
+        <Link href="/notes">Start</Link>
       </Button>
       <ThemeToggle />
     </main>
