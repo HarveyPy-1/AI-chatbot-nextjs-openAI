@@ -39,7 +39,7 @@ const Note = ({ note }: NoteProps) => {
             {wasUpdated && " · updated"}
           </CardDescription>
         </CardHeader>
-        <Separator className="mb-2" />
+        <Separator className="mb-2 -mt-4" />
         <CardContent>
           <p className="whitespace-pre-line">{note.content}</p>
         </CardContent>
