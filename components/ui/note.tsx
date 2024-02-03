@@ -7,12 +7,21 @@ import {
   CardHeader,
   CardTitle,
 } from "./card";
+import { remark } from 'remark';
+import html from 'remark-html';
 import { Separator } from "./separator";
 import { useState } from "react";
 import ModifyNoteDialog from "./modifyNoteDialog";
 
 interface NoteProps {
   note: NoteModel;
+}
+
+async function toHtml(content:string){
+  const processedContent = await remark()
+  .use(html)
+  .process(content);
+  return processedContent.toString();
 }
 
 const Note = ({ note }: NoteProps) => {
@@ -25,6 +34,7 @@ const Note = ({ note }: NoteProps) => {
   const createdUpdatedAtTimestamp = (
     wasUpdated ? note.updatedAt : note.createdAt
   ).toDateString();
+  
 
   return (
     <>
@@ -41,7 +51,7 @@ const Note = ({ note }: NoteProps) => {
         </CardHeader>
         <Separator className="mb-2 -mt-4" />
         <CardContent>
-          <p className="whitespace-pre-line">{note.content}</p>
+          <div  className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: toHtml(note.content || "") }} />
         </CardContent>
       </Card>
       <ModifyNoteDialog
