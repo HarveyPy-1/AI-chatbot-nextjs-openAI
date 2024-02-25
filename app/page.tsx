@@ -26,7 +26,7 @@ export default function Home() {
       </p>
       {/* Instead of wrapping this button with a Link tag, use the asChild prop to tell it to render as a Link tag */}
       <Button size="lg" asChild>
-        <Link href="/notes">Start</Link>
+        <Link href="/notes">Login to continue</Link>
       </Button>
       <ThemeToggle />
     </main>
